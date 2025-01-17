@@ -44,7 +44,7 @@ show-show-apps-button=true
 transparency-mode='FIXED'
 
 [org/gnome/shell/extensions/just-perfection]
-activities-button=false
+activities-button=true
 alt-tab-icon-size=0
 alt-tab-small-icon-size=0
 alt-tab-window-preview-size=0
