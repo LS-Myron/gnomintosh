@@ -70,10 +70,10 @@ mkdir -p ~/.local/share/icons/WhiteSur-cursors
 cp WhiteSur-cursors/dist/* ~/.local/share/icons/WhiteSur-cursors -prf
 
 # Wallpapers
-mkdir -p ~/Pictures/
-cp -r wallpaper/* ~/Pictures/ 
-gsettings set org.gnome.desktop.background picture-uri "file:///home/$user_name/Pictures/monterey.png"
-gsettings set org.gnome.desktop.background picture-uri-dark "file:///home/$user_name/Pictures/monterey.png"
+#mkdir -p ~/Pictures/
+#cp -r wallpaper/* ~/Pictures/ 
+#gsettings set org.gnome.desktop.background picture-uri "file:///home/$user_name/Pictures/monterey.png"
+#gsettings set org.gnome.desktop.background picture-uri-dark "file:///home/$user_name/Pictures/monterey.png"
 
 # Load settings using dconf
 dconf load / < dconf/settings.dconf
