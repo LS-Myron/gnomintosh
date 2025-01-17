@@ -16,6 +16,9 @@ uninstall() {
     exit 0
   fi
 
+  echo "Just to make sure, remove firefox theme..."
+  WhiteSur-gtk-theme/tweaks.sh --firefox -r
+
   echo "Removing theme directories..."
   rm -rf ~/WhiteSur-gtk-theme ~/WhiteSur-icon-theme ~/WhiteSur-cursors
 
@@ -37,6 +40,25 @@ uninstall() {
   exit 0
 }
 
+no_wallpaper=false
+dark_theme=true
+firefox_theme=false
+
+# Controleer alle argumenten
+for arg in "$@"; do
+  case "$arg" in
+    -no-wp)
+      no_wallpaper=true
+      ;;
+    -light)
+      dark_theme=false
+      ;;
+    --firefox_theme|-f)
+      firefox_theme=true
+      ;;
+  esac
+done
+
 # Cleaning previous directories
 echo "Cleaning directories..."
 rm -rf WhiteSur*
@@ -56,13 +78,18 @@ git clone https://github.com/vinceliuice/WhiteSur-cursors.git --depth=1
 
 # Installing theme
 echo "Run theme install..."
-if [[ -f "$2" || "$2" == '-light' ]]; then
+if [[ $dark_theme == false ]]; then
   WhiteSur-gtk-theme/install.sh -l -c Light
 else
   WhiteSur-gtk-theme/install.sh -l -c Dark
 fi
 echo "Run theme tweaks..."
-WhiteSur-gtk-theme/tweaks.sh
+
+if [[ "$firefox_theme" == true ]]; then
+  WhiteSur-gtk-theme/tweaks.sh --firefox
+else
+  WhiteSur-gtk-theme/tweaks.sh
+fi
 
 # Icons
 echo "Run icons install..."
@@ -73,8 +100,7 @@ echo "Run cursors install..."
 mkdir -p ~/.local/share/icons/WhiteSur-cursors
 cp WhiteSur-cursors/dist/* ~/.local/share/icons/WhiteSur-cursors -prf
 
-
-if [[ -f "$3" || "$3" != '-no-wp' ]]; then
+if [[ "$no_wallpaper" == false ]]; then
   WhiteSur-gtk-theme/install.sh -l -c Light
   # Wallpapers
   echo "Run wallpaper install..."
@@ -84,11 +110,10 @@ if [[ -f "$3" || "$3" != '-no-wp' ]]; then
   gsettings set org.gnome.desktop.background picture-uri-dark "file:///home/$user_name/Pictures/monterey.png"
 fi
 
-
 # Load settings using dconf
 echo "Run dconf load..."
 dconf load / < dconf/settings.dconf
-if [[ -f "$2" || "$2" == '-light' ]]; then
+if [[ $dark_theme == false ]]; then
   dconf load / < dconf/light.dconf
 else
   dconf load / < dconf/dark.dconf
@@ -96,4 +121,5 @@ fi
 
 # Fonts
 echo "Copy fonts..."
+mkdir -p ~/.local/share/fonts/
 cp fonts/* ~/.local/share/fonts/
