@@ -55,28 +55,40 @@ git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git --depth=1
 git clone https://github.com/vinceliuice/WhiteSur-cursors.git --depth=1
 
 # Installing theme
+echo "Run theme install..."
 if [[ -f "$2" || "$2" == '-light' ]]; then
   WhiteSur-gtk-theme/install.sh -l -c Light
 else
   WhiteSur-gtk-theme/install.sh -l -c Dark
 fi
-WhiteSur-gtk-theme/tweaks.sh -F
+echo "Run theme tweaks..."
+WhiteSur-gtk-theme/tweaks.sh
 
 # Icons
+echo "Run icons install..."
 WhiteSur-icon-theme/install.sh -b
 
 # Cursors
+echo "Run cursors install..."
 mkdir -p ~/.local/share/icons/WhiteSur-cursors
 cp WhiteSur-cursors/dist/* ~/.local/share/icons/WhiteSur-cursors -prf
 
 # Wallpapers
+#echo "Run wallpaper install..."
 #mkdir -p ~/Pictures/
 #cp -r wallpaper/* ~/Pictures/ 
 #gsettings set org.gnome.desktop.background picture-uri "file:///home/$user_name/Pictures/monterey.png"
 #gsettings set org.gnome.desktop.background picture-uri-dark "file:///home/$user_name/Pictures/monterey.png"
 
 # Load settings using dconf
+echo "Run dconf load..."
 dconf load / < dconf/settings.dconf
+if [[ -f "$2" || "$2" == '-light' ]]; then
+  dconf load / < dconf/light.dconf
+else
+  dconf load / < dconf/dark.dconf
+fi
 
 # Fonts
+echo "Copy fonts..."
 cp fonts/* ~/.local/share/fonts/

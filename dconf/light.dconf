@@ -1,0 +1,5 @@
+[org/gnome/desktop/interface]
+gtk-theme='WhiteSur-Light'
+icon-theme='WhiteSur-light'
+[org/gnome/shell/extensions/user-theme]
+name='WhiteSur-Light'

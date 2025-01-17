@@ -1,10 +1,8 @@
 [org/gnome/desktop/interface]
-cursor-theme='WhiteSur-cursors'
 document-font-name='SF Pro Display 11'
 font-name='SF Pro Display 11'
-gtk-theme='WhiteSur-Dark'
-icon-theme='WhiteSur-dark'
 monospace-font-name='SF Pro Display 10'
+cursor-theme='WhiteSur-cursors'
 
 [org/gnome/desktop/wm/preferences]
 button-layout='close,minimize,maximize:'
