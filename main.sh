@@ -1,6 +1,23 @@
 #!/usr/bin/env bash
 
 user_name="$USER"
+no_wallpaper=false
+dark_theme=true
+firefox_theme=false
+
+for arg in "$@"; do
+  case "$arg" in
+    -no-wp)
+      no_wallpaper=true
+      ;;
+    -light)
+      dark_theme=false
+      ;;
+    --firefox_theme|-f)
+      firefox_theme=true
+      ;;
+  esac
+done
 
 # Function to display usage
 usage() {
@@ -39,25 +56,6 @@ uninstall() {
   echo "Uninstall completed."
   exit 0
 }
-
-no_wallpaper=false
-dark_theme=true
-firefox_theme=false
-
-# Controleer alle argumenten
-for arg in "$@"; do
-  case "$arg" in
-    -no-wp)
-      no_wallpaper=true
-      ;;
-    -light)
-      dark_theme=false
-      ;;
-    --firefox_theme|-f)
-      firefox_theme=true
-      ;;
-  esac
-done
 
 # Cleaning previous directories
 echo "Cleaning directories..."
