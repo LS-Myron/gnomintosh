@@ -64,7 +64,6 @@ Make sure the following GNOME extensions are installed:
 - [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/)
 - [Freon](https://extensions.gnome.org/extension/841/freon/)
 - [Just Perfection](https://extensions.gnome.org/extension/3843/just-perfection/)
-- [Quick Setting Tweaker](https://extensions.gnome.org/extension/5446/quick-settings-tweaker/)
 
 You can install these extensions by visiting the respective links and following the installation instructions provided on the GNOME Extensions website.
 
