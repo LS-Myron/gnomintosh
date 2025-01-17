@@ -4,7 +4,7 @@ user_name="$USER"
 
 # Function to display usage
 usage() {
-  echo "Usage: $0 [install|uninstall] [-light]"
+  echo "Usage: $0 [install|uninstall] [-light] [-no-wp]"
   exit 1
 }
 
@@ -73,12 +73,17 @@ echo "Run cursors install..."
 mkdir -p ~/.local/share/icons/WhiteSur-cursors
 cp WhiteSur-cursors/dist/* ~/.local/share/icons/WhiteSur-cursors -prf
 
-# Wallpapers
-#echo "Run wallpaper install..."
-#mkdir -p ~/Pictures/
-#cp -r wallpaper/* ~/Pictures/ 
-#gsettings set org.gnome.desktop.background picture-uri "file:///home/$user_name/Pictures/monterey.png"
-#gsettings set org.gnome.desktop.background picture-uri-dark "file:///home/$user_name/Pictures/monterey.png"
+
+if [[ -f "$3" || "$3" != '-no-wp' ]]; then
+  WhiteSur-gtk-theme/install.sh -l -c Light
+  # Wallpapers
+  echo "Run wallpaper install..."
+  mkdir -p ~/Pictures/
+  cp -r wallpaper/* ~/Pictures/
+  gsettings set org.gnome.desktop.background picture-uri "file:///home/$user_name/Pictures/monterey.png"
+  gsettings set org.gnome.desktop.background picture-uri-dark "file:///home/$user_name/Pictures/monterey.png"
+fi
+
 
 # Load settings using dconf
 echo "Run dconf load..."

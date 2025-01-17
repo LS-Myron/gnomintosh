@@ -83,7 +83,8 @@ cd gnomintosh
 3. Install the necessary [Required packages](#required-packages) and [Required extentions](#required-gnome-extensions)
 4. Run the following command
 ```bash
-./main.sh
+chmod -x ./main.sh
+./main.sh install [-light|-dark] [-no-wp]
 ```
 This script will guide you through the installation of the theme, icons, cursors, wallpapers, and fonts.
 
