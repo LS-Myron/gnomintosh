@@ -1,5 +1,6 @@
 [org/gnome/desktop/interface]
 gtk-theme='WhiteSur-Dark'
 icon-theme='WhiteSur-dark'
+color-scheme='prefer-dark'
 [org/gnome/shell/extensions/user-theme]
 name='WhiteSur-Dark'
