@@ -1,7 +1,7 @@
 [org/gnome/desktop/interface]
 document-font-name='SF Pro Display 11'
 font-name='SF Pro Display 11'
-monospace-font-name='SF Pro Display 10'
+# monospace-font-name='SF Pro Display 10'
 cursor-theme='WhiteSur-cursors'
 
 [org/gnome/desktop/wm/preferences]

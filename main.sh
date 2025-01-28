@@ -13,7 +13,7 @@ for arg in "$@"; do
     -light)
       dark_theme=false
       ;;
-    --firefox_theme|-f)
+    --firefox|-f)
       firefox_theme=true
       ;;
   esac
@@ -21,7 +21,7 @@ done
 
 # Function to display usage
 usage() {
-  echo "Usage: $0 [install|uninstall] [-light] [-no-wp]"
+  echo "Usage: $0 [install|update|uninstall|help] [-light] [-no-wp] [-f|--firefox]"
   exit 1
 }
 
@@ -53,26 +53,43 @@ uninstall() {
   gsettings reset org.gnome.desktop.background picture-uri
   gsettings reset org.gnome.desktop.background picture-uri-dark
 
+  # Cleaning previous directories
+  echo "Cleaning directories..."
+  rm -rf WhiteSur*
+
   echo "Uninstall completed."
   exit 0
 }
 
-# Cleaning previous directories
-echo "Cleaning directories..."
-rm -rf WhiteSur*
+update() {
+  echo "Cleaning directories..."
+  rm -rf WhiteSur*
+
+  cloneRepositories
+}
+
+install() {
+  cloneRepositories
+}
+
+cloneRepositories() {
+  # Cloning required files
+  echo "Cloning required files..."
+  git clone https://github.com/jothi-prasath/WhiteSur-gtk-theme.git --depth=1
+  git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git --depth=1
+  git clone https://github.com/vinceliuice/WhiteSur-cursors.git --depth=1
+}
 
 # Check for install/uninstall argument
 if [[ "$1" == "uninstall" ]]; then
   uninstall
-elif [[ "$1" != "install" ]]; then
+elif [[ "$1" == "update" ]]; then
+  update
+elif [[ "$1" == "install" ]]; then
+  install
+elif [[ "$1" == "help" ]]; then
   usage
 fi
-
-# Cloning required files
-echo "Cloning required files..."
-git clone https://github.com/jothi-prasath/WhiteSur-gtk-theme.git --depth=1
-git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git --depth=1
-git clone https://github.com/vinceliuice/WhiteSur-cursors.git --depth=1
 
 # Installing theme
 echo "Run theme install..."
@@ -81,6 +98,7 @@ if [[ $dark_theme == false ]]; then
 else
   WhiteSur-gtk-theme/install.sh -l -c Dark
 fi
+
 echo "Run theme tweaks..."
 
 if [[ "$firefox_theme" == true ]]; then
@@ -99,7 +117,6 @@ mkdir -p ~/.local/share/icons/WhiteSur-cursors
 cp WhiteSur-cursors/dist/* ~/.local/share/icons/WhiteSur-cursors -prf
 
 if [[ "$no_wallpaper" == false ]]; then
-  WhiteSur-gtk-theme/install.sh -l -c Light
   # Wallpapers
   echo "Run wallpaper install..."
   mkdir -p ~/Pictures/
