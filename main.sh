@@ -121,7 +121,7 @@ if [[ "$no_wallpaper" == false ]]; then
   echo "Run wallpaper install..."
   mkdir -p ~/Pictures/
   cp -r wallpaper/* ~/Pictures/
-  gsettings set org.gnome.desktop.background picture-uri "file:///home/$user_name/Pictures/monterey.png"
+  gsettings set org.gnome.desktop.background picture-uri "file:///home/$user_name/Pictures/ventura.png"
   gsettings set org.gnome.desktop.background picture-uri-dark "file:///home/$user_name/Pictures/monterey.png"
 fi
 
