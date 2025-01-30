@@ -50,7 +50,7 @@ uninstall() {
   done
 
   echo "Removing wallpapers..."
-  rm -f ~/Pictures/MacOs/
+  rm -f ~/Pictures/gnomintosh/
 
   echo "Resetting desktop background..."
   gsettings reset org.gnome.desktop.background picture-uri
@@ -122,10 +122,10 @@ cp "$script_dir"/WhiteSur-cursors/dist/* ~/.local/share/icons/WhiteSur-cursors -
 if [[ "$no_wallpaper" == false ]]; then
   # Wallpapers
   echo "Run wallpaper install..."
-  mkdir -p ~/Pictures/MacOs
-  cp -r "$script_dir"/wallpaper/* ~/Pictures/MacOs
-  gsettings set org.gnome.desktop.background picture-uri "file:///home/$user_name/Pictures/MacOs/ventura.jpg"
-  gsettings set org.gnome.desktop.background picture-uri-dark "file:///home/$user_name/Pictures/MacOs/monterey.png"
+  mkdir -p ~/Pictures/gnomintosh
+  cp -r "$script_dir"/wallpaper/* ~/Pictures/gnomintosh
+  gsettings set org.gnome.desktop.background picture-uri "file:///home/$user_name/Pictures/gnomintosh/ventura.jpg"
+  gsettings set org.gnome.desktop.background picture-uri-dark "file:///home/$user_name/Pictures/gnomintosh/monterey.png"
 fi
 
 # Load settings using dconf
