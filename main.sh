@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 user_name="$USER"
 no_wallpaper=false
 dark_theme=true
 firefox_theme=false
+
 
 for arg in "$@"; do
   case "$arg" in
@@ -34,10 +36,11 @@ uninstall() {
   fi
 
   echo "Just to make sure, remove firefox theme..."
-  WhiteSur-gtk-theme/tweaks.sh --firefox -r
+  "$script_dir"/WhiteSur-gtk-theme/tweaks.sh --firefox -r
 
   echo "Removing theme directories..."
-  rm -rf ~/WhiteSur-gtk-theme ~/WhiteSur-icon-theme ~/WhiteSur-cursors
+  rm -rf "$script_dir"/WhiteSur-gtk-theme "$script_dir"/WhiteSur-icon-theme "$script_dir"/WhiteSur-cursors
+
 
   echo "Removing installed fonts..."
   for font in ~/.local/share/fonts/*; do
@@ -47,7 +50,7 @@ uninstall() {
   done
 
   echo "Removing wallpapers..."
-  rm -f ~/Pictures/monterey.png
+  rm -f ~/Pictures/MacOs/
 
   echo "Resetting desktop background..."
   gsettings reset org.gnome.desktop.background picture-uri
@@ -94,47 +97,47 @@ fi
 # Installing theme
 echo "Run theme install..."
 if [[ $dark_theme == false ]]; then
-  WhiteSur-gtk-theme/install.sh -l -c Light
+  "$script_dir"/WhiteSur-gtk-theme/install.sh -l -c Light
 else
-  WhiteSur-gtk-theme/install.sh -l -c Dark
+  "$script_dir"/WhiteSur-gtk-theme/install.sh -l -c Dark
 fi
 
 echo "Run theme tweaks..."
 
 if [[ "$firefox_theme" == true ]]; then
-  WhiteSur-gtk-theme/tweaks.sh --firefox
+  "$script_dir"/WhiteSur-gtk-theme/tweaks.sh --firefox
 else
-  WhiteSur-gtk-theme/tweaks.sh
+  "$script_dir"/WhiteSur-gtk-theme/tweaks.sh
 fi
 
 # Icons
 echo "Run icons install..."
-WhiteSur-icon-theme/install.sh -b
+"$script_dir"/WhiteSur-icon-theme/install.sh -b
 
 # Cursors
 echo "Run cursors install..."
 mkdir -p ~/.local/share/icons/WhiteSur-cursors
-cp WhiteSur-cursors/dist/* ~/.local/share/icons/WhiteSur-cursors -prf
+cp "$script_dir"/WhiteSur-cursors/dist/* ~/.local/share/icons/WhiteSur-cursors -prf
 
 if [[ "$no_wallpaper" == false ]]; then
   # Wallpapers
   echo "Run wallpaper install..."
-  mkdir -p ~/Pictures/
-  cp -r wallpaper/* ~/Pictures/
-  gsettings set org.gnome.desktop.background picture-uri "file:///home/$user_name/Pictures/ventura.png"
-  gsettings set org.gnome.desktop.background picture-uri-dark "file:///home/$user_name/Pictures/monterey.png"
+  mkdir -p ~/Pictures/MacOs
+  cp -r "$script_dir"/wallpaper/* ~/Pictures/MacOs
+  gsettings set org.gnome.desktop.background picture-uri "file:///home/$user_name/Pictures/MacOs/ventura.jpg"
+  gsettings set org.gnome.desktop.background picture-uri-dark "file:///home/$user_name/Pictures/MacOs/monterey.png"
 fi
 
 # Load settings using dconf
 echo "Run dconf load..."
-dconf load / < dconf/settings.dconf
+dconf load / < "$script_dir"/dconf/settings.dconf
 if [[ $dark_theme == false ]]; then
-  dconf load / < dconf/light.dconf
+  dconf load / < "$script_dir"/dconf/light.dconf
 else
-  dconf load / < dconf/dark.dconf
+  dconf load / < "$script_dir"/dconf/dark.dconf
 fi
 
 # Fonts
 echo "Copy fonts..."
 mkdir -p ~/.local/share/fonts/
-cp fonts/* ~/.local/share/fonts/
+cp "$script_dir"/fonts/* ~/.local/share/fonts/
