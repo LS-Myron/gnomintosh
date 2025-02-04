@@ -84,7 +84,7 @@ cd gnomintosh
 4. Run the following command
 ```bash
 chmod -x ./main.sh
-./main.sh install [-light|-dark] [-no-wp]
+./main.sh [install|update|uninstall|help] [-light|-dark] [-no-wp] [-f|--firefox]
 ```
 This script will guide you through the installation of the theme, icons, cursors, wallpapers, and fonts.
 
