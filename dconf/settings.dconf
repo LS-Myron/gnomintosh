@@ -1,14 +1,12 @@
 [org/gnome/desktop/interface]
+document-font-name='SF Pro Display 11'
+font-name='SF Pro Display 11'
+# monospace-font-name='SF Pro Display 10'
 cursor-theme='WhiteSur-cursors'
-document-font-name='SF Pro Display 13'
-font-name='SF Pro Display 13'
-gtk-theme='WhiteSur-Dark'
-icon-theme='WhiteSur-dark'
-monospace-font-name='SF Pro Display 12'
 
 [org/gnome/desktop/wm/preferences]
 button-layout='close,minimize,maximize:'
-titlebar-font='SF Pro Display 13'
+titlebar-font='SF Pro Display 11'
 
 [org/gnome/shell/extensions/dash-to-dock]
 application-counter-overrides-notifications=true
@@ -27,11 +25,11 @@ dock-position='BOTTOM'
 height-fraction=1.0
 hide-tooltip=false
 hot-keys=false
-intellihide=true
+intellihide=false
 intellihide-mode='MAXIMIZED_WINDOWS'
 max-alpha=0.75
 min-alpha=0.40000000000000002
-multi-monitor=false
+multi-monitor=true
 preferred-monitor=-2
 preferred-monitor-by-connector='eDP-1'
 preview-size-scale=0.0
@@ -46,7 +44,7 @@ show-show-apps-button=true
 transparency-mode='FIXED'
 
 [org/gnome/shell/extensions/just-perfection]
-activities-button=false
+activities-button=true
 alt-tab-icon-size=0
 alt-tab-small-icon-size=0
 alt-tab-window-preview-size=0
