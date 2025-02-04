@@ -135,6 +135,11 @@ if [[ "$no_wallpaper" == false ]]; then
   gsettings set org.gnome.desktop.background picture-uri-dark "file:///home/$user_name/Pictures/gnomintosh/monterey.png"
 fi
 
+# Fonts
+echo "Copy fonts..."
+mkdir -p ~/.local/share/fonts/
+cp "$script_dir"/fonts/* ~/.local/share/fonts/
+
 # Load settings using dconf
 echo "Run dconf load..."
 dconf load / < "$script_dir"/dconf/settings.dconf
@@ -143,8 +148,3 @@ if [[ $dark_theme == false ]]; then
 else
   dconf load / < "$script_dir"/dconf/dark.dconf
 fi
-
-# Fonts
-echo "Copy fonts..."
-mkdir -p ~/.local/share/fonts/
-cp "$script_dir"/fonts/* ~/.local/share/fonts/
