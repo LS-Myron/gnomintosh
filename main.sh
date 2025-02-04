@@ -6,7 +6,6 @@ no_wallpaper=false
 dark_theme=true
 firefox_theme=false
 
-
 for arg in "$@"; do
   case "$arg" in
     -no-wp)
@@ -41,13 +40,15 @@ uninstall() {
   echo "Removing theme directories..."
   rm -rf "$script_dir"/WhiteSur-gtk-theme "$script_dir"/WhiteSur-icon-theme "$script_dir"/WhiteSur-cursors
 
-
   echo "Removing installed fonts..."
   for font in ~/.local/share/fonts/*; do
     if [[ $(basename "$font") == *"WhiteSur"* ]]; then
       rm -f "$font"
     fi
   done
+
+  echo "Removing installed sounds..."
+  rm -f ~/.local/share/sounds/WhiteSur-sounds
 
   echo "Removing wallpapers..."
   rm -f ~/Pictures/gnomintosh/
@@ -81,6 +82,7 @@ cloneRepositories() {
   git clone https://github.com/jothi-prasath/WhiteSur-gtk-theme.git --depth=1
   git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git --depth=1
   git clone https://github.com/vinceliuice/WhiteSur-cursors.git --depth=1
+  git clone https://github.com/lucagoc/MacOSSounds4Gnome.git  WhiteSur-sounds --depth=1
 }
 
 # Check for install/uninstall argument
@@ -118,6 +120,11 @@ echo "Run icons install..."
 echo "Run cursors install..."
 mkdir -p ~/.local/share/icons/WhiteSur-cursors
 cp "$script_dir"/WhiteSur-cursors/dist/* ~/.local/share/icons/WhiteSur-cursors -prf
+
+# Sounds
+echo "Run sounds install..."
+mkdir -p ~/.local/share/sounds/WhiteSur-sounds
+cp "$script_dir"/WhiteSur-sounds/* ~/.local/share/sounds/WhiteSur-sounds -prf
 
 if [[ "$no_wallpaper" == false ]]; then
   # Wallpapers

@@ -4,6 +4,9 @@ font-name='SF Pro Display 11'
 # monospace-font-name='SF Pro Display 10'
 cursor-theme='WhiteSur-cursors'
 
+[org/gnome/desktop/sound]
+theme-name='MacOS Sounds'
+
 [org/gnome/desktop/wm/preferences]
 button-layout='close,minimize,maximize:'
 titlebar-font='SF Pro Display 11'
