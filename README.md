@@ -134,3 +134,5 @@ GTK Theme - https://github.com/vinceliuice/WhiteSur-gtk-theme
 Icon - https://github.com/vinceliuice/WhiteSur-icon-theme
 
 Cursor - https://github.com/vinceliuice/WhiteSur-cursors
+
+Sounds - https://github.com/lucagoc/MacOSSounds4Gnome
